@@ -98,7 +98,15 @@ module.exports = (client, commandOptions) => {
         }
 
         const arguments = content.split(/[ ]+/)
-        arguments.shift()
+
+        if (`${arguments[0]} ` == `${prefix}`) {
+          arguments.shift()
+          arguments.shift()
+        } else {
+          arguments.shift()
+        }
+        
+        console.log(arguments)
 
         if (arguments.length < minArgs || (
           maxArgs !== null && arguments.length > maxArgs
@@ -112,27 +120,6 @@ module.exports = (client, commandOptions) => {
 
         return
       } 
-    }
-  })
-}
-
-module.exports.updateCache = (guildId, newPrefix) => {
-  guildPrefixes[guildId] = newPrefix
-}
-
-module.exports.loadPrefixes = async (client) => {
-  await mongo().then(async (mongoose) => {
-    try {
-      for (const guild of client.guilds.cache) {
-        const guildId = guild[1].id
-
-        const result = await commandPrefixSchema.findOne({ _id: guildId })
-        guildPrefixes[guildId] = result.prefix
-      }
-
-      console.log(guildPrefixes)
-    } finally {
-      mongoose.connection.close()
     }
   })
 }

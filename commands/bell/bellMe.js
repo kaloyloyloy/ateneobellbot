@@ -1,7 +1,6 @@
 module.exports = {
-  commands: ['bell me', 'b'],
+  commands: ['bell me'],
   minArgs: 0,
-  maxArgs: null,
   callback: (message, arguments, text) => {
 
     if (message.member.voice.channel) {

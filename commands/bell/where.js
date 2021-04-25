@@ -7,7 +7,6 @@ const { prefix } = require("../../config.json");
 module.exports = {
   commands: ['where'],
   minArgs: 0,
-  maxArgs: null,
   callback: async (message, arguments, text) => {
     await mongo().then(async(mongoose) => {
       try {

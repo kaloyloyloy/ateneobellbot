@@ -7,7 +7,6 @@ const bells = require("../../bells.js");
 module.exports = {
   commands: ['stop'],
   minArgs: 0,
-  maxArgs: null,
   callback: async (message, arguments, text) => {
     await mongo().then(async(mongoose) => {
       try {
