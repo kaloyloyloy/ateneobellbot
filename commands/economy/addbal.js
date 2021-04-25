@@ -11,13 +11,13 @@ module.exports = {
     const mention = message.mentions.users.first()
 
     if (!mention) {
-      message.reply('Please tag a user to add coins to.')
+      message.reply('Please tag a user to add coinyos to.')
       return
     }
 
-    const coins = arguments[1]
-    if (isNaN(coins)) {
-      message.reply('Please provide a valid numnber of coins.')
+    const coins = parseInt(arguments[1],10)
+    if (isNaN(coins) || coins <= 0) {
+      message.reply('Please provide a valid number of coinyos.')
       return
     }
 
@@ -26,7 +26,7 @@ module.exports = {
     const newCoins = await economy.addCoins(userId, coins)
 
     message.reply(
-      `You have given <@${userId}> ${coins} coin(s). They now have ${newCoins} coin(s)!`
+      `You have given <@${userId}> ${coins} coinyos. They now have ${newCoins} coinyos, Chong!`
     )
   },
 }
