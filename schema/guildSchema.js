@@ -7,11 +7,6 @@ const reqString = {
 
 const guildSchema = new mongoose.Schema({
   _id:reqString,
-  channelId: {
-    type: String,
-    default: ''
-  },
-  channelName: String,
   bellStatus:{
     type: Boolean,
     default: false

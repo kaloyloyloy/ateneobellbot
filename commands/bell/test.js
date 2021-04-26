@@ -4,8 +4,9 @@ const Discord = require('discord.js');
 const { prefix } = require("../../config.json");
 const bells = require("../../bells.js");
 
+
 module.exports = {
-  commands: ['start'],
+  commands: ['test'],
   minArgs: 0,
   callback: async (message, arguments, text) => {
     await mongo().then(async(mongoose) => {
@@ -24,7 +25,8 @@ module.exports = {
         
         if (!guildProfile.bellStatus) {
           console.log(typeof channel);
-          bells.initiateBell(channel);
+          console.log(guildProfile.channelObj);
+          bells.test(channel);
           message.channel.send(`🔔 Bell is up in **${channelName}** my dudes 🔔`);
           await Guild.findOneAndUpdate(
             {
@@ -37,10 +39,8 @@ module.exports = {
               upsert: true,
             }
           )
-        } else if (guildProfile.bellStatus){
+        }  else if (guildProfile.bellStatus){
           message.channel.send(`Bell is already up.`)
-        } else if (!channel){
-          message.channel.send(`You need to be in a channel to start the bell!`)
         };
         
 

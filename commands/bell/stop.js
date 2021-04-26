@@ -23,7 +23,6 @@ module.exports = {
         if (!guildProfile.bellStatus) {
           message.reply(`Ateneo bell is not up.`);
         } else if (guildProfile.bellStatus) {
-          bells.initiateBell(guildProfile.channelId);
           bells.stop();
           await Guild.findOneAndUpdate(
             {
